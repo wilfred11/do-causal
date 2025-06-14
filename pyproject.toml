@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "do-causal"
+version = "0.1.0"
+description = ""
+authors = ["wilfred11 <wilfredvancasteren@hotmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.12,<3.13"
+dowhy = "^0.12"
+pydot = "^4.0.0"
+pyagrum = "^2.1.1"
+imgkit = "^1.2.3"
+ipython = "^9.3.0"
+cairosvg = "^2.8.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
