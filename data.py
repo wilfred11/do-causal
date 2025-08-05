@@ -1,43 +1,23 @@
 import pandas as pd
 import numpy as np
 
-def read_data():
-    df = pd.read_csv('./data/Salary_Data.csv')
-    print(df.info())
+class BinaryDataGenerator():
 
-    df.rename(columns=lambda x: x.replace(' ', '_'), inplace=True)
+    def __init__(self, population_size : int, columns : list, random_state : int = 42):
+        self.random_state = random_state
+        self.__data = pd.DataFrame(data=np.full(shape=(population_size, len(columns)), fill_value=0, dtype=int), columns=columns)
 
-    numeric = ['Age', 'Years_of_Experience', 'Salary']
-    for col in numeric:
-        df[col].fillna(df[col].mean(), inplace=True)
+    def set_values(self, col_name : str, count : int = None, frac : float = None, condition : pd.Series = None, value = 1):
+        if condition is None: # If no condition specified, create a dummy condition that is True for every row so the update will be applies to all rows
+            condition = pd.Series(data=[True] * len(self.__data))
 
-    categorical = ['Gender', 'Education_Level']
-    for col in categorical:
-        mode_val = df[col].mode()[0]
-        df[col].fillna(mode_val, inplace=True)
+        update_indices = list(self.__data[condition].sample(n=count, frac=frac, random_state=self.random_state).index)
+        self.__data.loc[update_indices, [col_name]] = value
 
-    df['Education_Level'] = np.where(df['Education_Level'] == "PhD", 1, 0)
+    @property
+    def data(self) -> pd.DataFrame:
+        return self.__data
 
-    bins = [18, 30, 40, 50, 60, 70, 120]
-    age_labels = ['18-29', '30-39', '40-49', '50-59', '60-69', '70+']
-    df['Age-group'] = pd.cut(df.Age, bins, labels=age_labels, include_lowest=True)
-
-    df = df[['Age-group',
-             'Gender',
-             'Education_Level',
-             'Years_of_Experience',
-             'Salary']]
-
-    df['Salary']= (np.ceil(df.Salary/10))*10
-
-    print(df["Salary"])
-
-    df.rename(columns={'Years_of_Experience': 'XP', 'Education_Level': 'PhD'}, inplace=True)
-
-    #df['Salary']=df['Salary']
-
-    convert_dict = {'Salary': int, 'XP':int}
-
-    df = df.astype(convert_dict)
-
-    return df, age_labels
+    @property
+    def summary(self) -> pd.DataFrame:
+        return self.__data.value_counts().reset_index().rename({0:"Count"}, axis=1)

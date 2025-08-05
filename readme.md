@@ -1,0 +1,23 @@
+## ACE
+The average causal effect is calculated by taking the difference between the average potential outcomes under the treatment and control conditions.
+Mathematically, it can be expressed as E[Y(1) - Y(0)], where Y(1) is the potential outcome under treatment and Y(0) is the potential outcome under control. 
+
+
+
+ACE = P(Y=1|do(X=1)) - P(Y=1|do(X=0))
+
+left:
+$$P(Y=1|do(X=1))=\sum_{F}P(F|X'=1).\sum_{X'}P(Y=1|F,X'=1).P(X'=1)$$
+$$P(Y=1|do(X=1))=(P(F=1|X=1).\sum_{X'}P(Y=1|F=1,X').P(X'))$$
+                $$+ (P(F=0|X=1).\sum_{X'}P(Y=1|F=0,X).P(X'))$$
+$$P(Y|do(X=1))= P(F=1|X=1).[P(Y=1|X'=0,F=1).P(X'=0)+P(Y=1|X'=1,F=1).P(X'=1)]$$
+              $$  +P(F=0|X=1).[P(Y=1|X'=0,F=0).P(X'=0)+P(Y=1|X'=1,F=0).P(X'=1)]$$
+
+right:
+$$P(Y=1|do(X=0))=\sum_{F}P(F|X=0).\sum_{X'}P(Y=1|F,X').P(X')$$
+$$P(Y=1|do(X=0))=(P(F=1|X=0).\sum_{X'}P(Y=1|F=1,X').P(X'))$$
+                $$+ (P(F=0|X=0).\sum_{X'}P(Y=1|F=0,X').P(X'))$$
+$$P(Y|do(X=0))= P(F=1|X=0).[P(Y=1|X=0,F=1).P(X=0)+P(Y=1|X=1,F=1).P(X=1)]$$
+              $$  +P(F=0|X=0).[P(Y=1|X=0,F=0).P(X=0)+P(Y=1|X=1,F=0).P(X=1)]$$
+
+Y
