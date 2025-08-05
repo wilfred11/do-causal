@@ -39,5 +39,11 @@ The probabibilities can be fetched from the image below.
 
 <img width="296" height="422" alt="probabilities" src="https://github.com/user-attachments/assets/36a33502-1e0c-4f8f-ab8b-88e83d09f315" />
 
+### Result
+
+P_Y_doX_1=(0.65*((0.35*0.5)+(0.85*0.5)) + 0.35*((0.15*0.5)+(0.10*0.5)))
+
+
+
 
 
