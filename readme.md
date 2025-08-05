@@ -33,3 +33,11 @@ $$P(Y|do(X=0))= P(F=1|X=0).[P(Y=1|X=0,F=1).P(X=0)+P(Y=1|X=1,F=1).P(X=1)]$$
               $$+P(F=0|X=0).[P(Y=1|X=0,F=0).P(X=0)+P(Y=1|X=1,F=0).P(X=1)]$$
 
 
+### Probabilities
+
+The probabibilities can be fetched from the image below.
+
+<img width="296" height="422" alt="probabilities" src="https://github.com/user-attachments/assets/36a33502-1e0c-4f8f-ab8b-88e83d09f315" />
+
+
+
